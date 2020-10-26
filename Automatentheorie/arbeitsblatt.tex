@@ -12,6 +12,16 @@
 \usepackage{csquotes}
 %--------------------------------------
 
+%Margins
+%--------------------------------------
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+ 
 %Pictures
 %--------------------------------------
 \usepackage{graphicx}
@@ -84,8 +94,8 @@ solution-name     = \XSIMtranslate{solution},
 solutions-name    = \XSIMtranslate{solutions},
 exercise-template = default,
 solution-template = default,
-exercise-heading  = \subsection*,
-solution-heading  = \subsection*
+exercise-heading  = \subsubsection*,
+solution-heading  = \subsubsection*
 }
 \DeclareExerciseTranslations{question}{
 Fallback = question ,
@@ -101,8 +111,8 @@ solution-name     = \XSIMtranslate{solution},
 solutions-name    = \XSIMtranslate{solutions},
 exercise-template = default,
 solution-template = default,
-exercise-heading  = \subsection*,
-solution-heading  = \subsection*
+exercise-heading  = \subsubsection*,
+solution-heading  = \subsubsection*
 }
 \DeclareExerciseTranslations{definition}{
 Fallback = definition ,
@@ -150,7 +160,7 @@ German   = Definition
 
 \title{Einführung in die Automatentheorie}
 \author{Alexandra Maximova}
-\date{Oktober 2020}
+\date{26 Oktober 2020}
 
 \begin{document}
 
@@ -158,38 +168,57 @@ German   = Definition
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{Pictures/image.png} 
+\includegraphics[width=0.6\linewidth]{Pictures/image.png} 
 \end{figure}
 
 
 \section{Einführung}
-Im Alltag interagieren wir mit vielen Maschinen, die sehr einfache Programme ausführen. Zum Beispiel, wie viele von euch haben heute den Lift genommen? Oder mussten an einer Ampel anstehen? Oder haben ein Getränk aus dem Automaten vor der Mensa genommen? Wie werden diese Gegenstände gesteuert?
+Im Alltag interagieren wir mit vielen Maschinen, die einfache Programme ausführen. Zum Beispiel, wie viele von euch haben heute den Lift genommen? Oder mussten an einer Ampel anstehen? Oder haben ein Getränk aus dem Automaten vor der Mensa gekauft? Wie werden diese Maschinen gesteuert?
 
-Diese einfache Programme, die keine Variablen und keine Datenablage benötigen, nennt man \emph{endliche Automaten}. Heute werden wir Beispiele von endlichen Automaten kennenlernen und diesen Begriff genau mathematisch definieren. Auf dieser Basis werden wir dann in den nächsten Wochen aufbauen und beweisen, welche Probleme lassen sich mit solchen Programmen lösen und welche nicht.
+Die Programme, die sie ausführen, haben keine Variablen und keine Datenablage. Man nennt solche Programme \textbf{endliche Automaten}. Heute werden wir Beispiele von endlichen Automaten kennenlernen und diesen Begriff  mathematisch formulieren. Auf dieser Basis werden wir dann in den nächsten Wochen aufbauen und beweisen, welche Probleme lassen sich mit solchen Programmen lösen und welche nicht.
+
 \begin{example}
-Das Beispiel mit der Ampel -- ausschreiben und zeichnen
+Eine Ampel kann als endlicher Automat betrachtet werden. Am Anfang ist sie rot, nach einer gewissen Zeit wird sie (zumindest in Deutschland) rot-gelb, dann wird sie grün, dann gelb und schliesslich wird sie wieder rot und der Zyklus geht von vorne los. Schematisch können wir das Verhalten dieser Ampel mit einem gerichteten Graphen darstellen. Wir zeichnen einen Knoten für jede Ampelfarbe und verwenden gerichtete Kanten, um zu zeigen, wie sich die Farben ändern.
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{Pictures/Ampel.png} 
+\includegraphics[width=0.4\linewidth]{Pictures/Ampel.png} 
 \end{figure}
 \end{example}
 
 \begin{example}
-Das Beispiel mit dem Getränkautomat -- im Arbeitsblatt leer lassen, im Skript für Johannes und Giovanni ergänzen.
+Betrachten wir einen Getränkeautomat, welcher Münzen im Wert von 1 CHF erwartet und ein Glas Kaffee oder heisse Schokolade ausschenkt, je nachdem welche Taste gedruckt wurde.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Pictures/weiss.png} 
+\end{figure}
 \end{example}
 
-\begin{examplesolution}[print=true]
-Das ist die Lösung. Ein schöner Automat.
+\begin{examplesolution}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Pictures/Getraenkeautomat.png} 
+\end{figure}
 \end{examplesolution}
 
 \begin{question}
-Zeichne einen Obstautomat. (Obstautomat genau beschreiben).
+Zeichne schematisch einen Obstautomaten, welcher Münzen im Wert von 1 CHF oder 0.5 CHF erwartet und einen Apfel oder eine Orange zurückgibt, je nachdem, welche Taste gedruckt wurde. Jede Frucht kostet 1 CHF. Wie beim Getränkautomaten im obigen Beispiel, behandle auch die Fälle, wenn die Tasten zu früh gedruckt werden, oder wenn Münzen unerwartet eingeworfen werden, oder wenn das Ausgabefensterchen zu früh kontrolliert wird.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Pictures/weiss.png} 
+\end{figure}
 \end{question}
 
-\section{Eigenschaften}
-\section{Alphabeten, Wörter, Sprachen}
+Wir haben bereits 3 endliche Automate gesehen. Was haben sie alle gemeinsam? Welche Informationen brauchen wir, um einen bestimmten Automaten genau nachbauen zu können?\\
+
+
+\blank[width=\linewidth]{Zustände, Übergänge, mögliche Eingaben, Anfang}
+In den folgenden Abschnitten werden wir versuchen, diese Informationen mathematisch zu formulieren. Eine mathematische Formulierung ist nützlich, weil sie ermöglicht, solche Automaten eindeutig zu beschreiben und Aussagen darüber zu beweisen.
+
+\section{Alphabete, Wörter, Sprachen}
+Eine wichtige Komponente von einem endlichen Automaten ist die erwartete Eingabe. In diesem Abschnitt befassen wir uns mit dessen mathematischen Formulierung.
+
 \begin{definition}
-Eine endliche nichtleere Menge \(\sigma\) heisst \textbf{Alphabet}. Die Elemente eines Alphabets werden \textbf{Buchstaben}, \textbf{Zeichen} oder \textbf{Symbole} genannt.
+Eine endliche nichtleere Menge \(\Sigma\) heisst \textbf{Alphabet}. Die Elemente eines Alphabets werden \textbf{Buchstaben}, \textbf{Zeichen} oder \textbf{Symbole} genannt.
 \end{definition}
 
 \begin{example}
@@ -210,8 +239,14 @@ Welche der folgenden Mengen sind Alphabete? Begründe deine Antwort.
 \end{itemize}
 \end{exercise}
 
+\begin{exercise}
+Welches Alphabet hatten wir für die Eingabe vom Getränkeautomaten benutzt? Und welches hast du für den Obstautomaten verwendet?\\
+
+\blank[width=\linewidth]{}
+\end{exercise}
+
 \begin{definition}
-Sei \(\Sigma\) ein Alphabet. Ein \textbf{Wort über \(Sigma\)} ist eine endliche (eventuell leere) Folge von Buchstaben aus \(\Sigma\). Das \textbf{leere Wort \(\lambda\)} ist die leere Buchstabenfolge.
+Sei \(\Sigma\) ein Alphabet. Ein \textbf{Wort über \(\Sigma\)} ist eine endliche (eventuell leere) Folge von Buchstaben aus \(\Sigma\). Das \textbf{leere Wort \(\lambda\)} ist die leere Buchstabenfolge.
 \end{definition}
 
 \begin{example}
@@ -234,14 +269,23 @@ Welche der folgenden Buchstabenfolgen sind Wörter über dem Alphabet \(\Sigma =
 Schreibe zu jeder Symbolfolge jeweils das kleinste Alphabet \(\Sigma\), so dass die Symbolfolge ein Wort über \(\Sigma\) ist.
 \begin{enumerate}[(a)]
 {\setstretch{1.5}
-    \item \texttt{abbabb},\hphantom{\textttt{00001}$xg(x)$} \(\Sigma = \)\blank[width=0.5\textwidth]{\(\{a,b\}\)}
-    \item \(\lambda\),\hphantom{\textttt{0000100001}$xg(x)$} \(\Sigma = \)\blank[width=0.5\textwidth]{\(\{x\}\)}
-    \item \texttt{01000.(00)!},\hphantom{$xg(x)$} \(\Sigma = \)\blank[width=0.5\textwidth]{\(\{0,1,.,(,),!\}\)}
-    \item \texttt{aXYabwRS},\hphantom{\textttt{000}$xg(x)$} \(\Sigma = \)\blank[width=0.5\textwidth]{\(\{a,b,w,R,S,X,Y\}\)}
+    \item \texttt{abbabb},\hfill \(\Sigma = \)\blank[width=0.5\textwidth]{\(\{a,b\}\)}
+    \item \texttt{01000.(00)!},\hfill \(\Sigma = \)\blank[width=0.5\textwidth]{\(\{0,1,.,(,),!\}\)}
+    \item \texttt{aXYabwRS},\hfill \(\Sigma = \)\blank[width=0.5\textwidth]{\(\{a,b,w,R,S,X,Y\}\)}
     
 }
 \end{enumerate}
 \end{exercise}
+
+\begin{definition}
+Auf Wörter definieren wir folgende Operationen:
+\begin{description}
+    \item[Länge:] Sei \(w\) ein Wort über \(\Sigma\). \(\abs{w}\) bezeichnet die Länge des Wortes. Zum Beispiel, \(\abs{\text{aabbcc}}=6\).
+    \item[Anzahl Symbole:] Sei \(w\) ein Wort über \(\Sigma\). \(\abs{w}_a\) bezeichnet die Anzahl der Vorkommnisse des Symbols \(a\) im Wort \(w\) des Wortes. Zum Beispiel, \(\abs{\text{aaabbc}}_a=3\).
+    \item[Konkatenation:] Seien \(v\) und \(w\) zwei Wörter über \(\Sigma\). \(vw\) bezeichnet das Wort, welches mit \(v\) anfängt und mit \(w\) endet. Man bezeichnet \(v\) als Präfix und \(w\) als Suffix von \(vw\). Zum Beispiel, wenn wir \texttt{001} mit \texttt{01} konkatenieren, erhalten wir \texttt{00101}.
+    \item[Wiederholung:] Sei \(a \in \Sigma\) und \(n \in \mathcal{N}\). \(a^n\) bezeichnet das Wort, welches aus \(n\) Wiederholungen von \(a\) besteht. Zum Beispiel, \(\text{0}^4\) bezeichnet das Wort \texttt{0000}.
+\end{description}
+\end{definition}
 
 \begin{definition}
 Eine (eventuell leere) Menge von Wörtern über einem Alphabet \(\Sigma\) bezeichnen wir als eine \textbf{Sprache über \(\Sigma\)}. 
@@ -256,9 +300,6 @@ Bei den folgen Beispielen von Sprachen, entscheide, ob die Sprache endlich viele
     \blank[width=\linewidth]{}
 
     \item \(L = \{wabba \in \{a,b\}^* \mid w \in \{a, b\}^* \text{ und } \abs(w)_a \leq 3\}\) \\
-    \blank[width=\linewidth]{}
-    
-    \item \(L = \{1^p \mid p \text{ ist eine Primzahl}\}\) \\
     \blank[width=\linewidth]{}
     
     \item \(L = \{0^n 1^n \in \{0, 1\}^* \mid n \in \mathcal{N}\}\) \\
@@ -282,11 +323,6 @@ Schreibe die folgenden informell beschriebenen Sprachen formal als Mengen auf.
     
     \blank[width=\linewidth]{}}
     
-    \item Die Sprache aller Wörter über \{., -\}, welche das Teilwort \verb|...---...| enthalten. \\
-    {\setstretch{1.5} 
-    
-    \blank[width=\linewidth]{}}
-    
     \item Die Sprache aller Wörter über \{a, b, c\}, welche mit dem Präfix \(a^3 b^2 c\) anfangen. \\
     {\setstretch{1.5} 
     
@@ -303,13 +339,45 @@ Ein \textbf{endlicher Automat} ist ein Quintupel \(M = (Q, \Sigma, \delta, q_0, 
     \item \(\Sigma\) \blank[width=0.5\linewidth]{das \textbf{Eingabealphabet} ist,}
     \item \(q_0 \in Q\) \blank[width=0.5\linewidth]{der \textbf{Anfangszustand} ist,}
     \item \(F \subseteq Q\) \blank[width=0.5\linewidth]{die \textbf{Menge der akzeptierenden Zustände} ist,}
-    \item \(\delta:\) \blank{\(Q\times \Sigma \rightarrow Q\)} \blank[width=0.5\linewidth]{die \textbf{Übergangsfunktion} ist.}
+    \item \(\delta:\) \blank[width=0.5\linewidth]{\(Q\times \Sigma \rightarrow Q\) die \textbf{Übergangsfunktion} ist.}
 \end{enumerate}
 }
 \end{definition}
 
+\begin{example}
+In diesem Beispiel beschreiben wir mathematisch den Getränkeautomat.
+{\setstretch{1.5} 
+\begin{enumerate}[(i)]
+    \item \(Q =\) \blank[width=0.5\linewidth]{}
+    \item \(\Sigma =\) \blank[width=0.5\linewidth]{}
+    \item \(q_0 =\) \blank[width=0.5\linewidth]{}
+    \item \(F =\) \blank[width=0.5\linewidth]{}
+    \item \(\delta:Q \times \Sigma \rightarrow Q \) die Übergansfunktion.
+    Wir können alle Werte von \(\delta(q,a)\) für alle \(q \in Q\) und für alle \(a \in \Sigma\) in eine Tabelle schreiben.
+        \begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{Pictures/Getraenkeautomat_table.png} 
+\end{figure}
+\end{enumerate}
+}
+\end{example}
+
+\begin{exercise}
+Formuliere mathematisch den Obstautomaten. Für die Übergangsfunktion kannst du eine Tabelle benutzen analog zum vorherigen Beispiel.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{Pictures/weiss.png} 
+\end{figure}
+\end{exercise}
+
 
 \section{Zusammenfassung}
+In diesem Kapitel haben wir \textbf{endliche Automaten} kennengelernt. Endliche Automaten werden zum Beispiel eingesetzt, um Ampel an Kreuzungen, Lift oder Snackautomaten zu steuern.
 
+Endliche Automaten haben eine endliche Anzahl \textbf{Zustände}. Sie bearbeiten sequentiell eine \textbf{Eingabe} und können nach jedem Symbol in einen anderen Zustand übergehen. Die \textbf{Zustandsübergänge} hängen nur vom aktuellen Zustand und vom eingelesenen Symbol ab.
+
+Bevor jegliche Eingabesymbole eingelesen werden, befindet sich ein endlicher Automat in seinem \textbf{Anfangszustand}. Nach der vollständigen Bearbeitung einer Eingabe endet der endliche Automat entweder in einen \textbf{akzeptierenden Zustand} (in diesem Fall wurde die Eingabe akzeptiert) oder in einen nicht-akzeptierenden Zustand (in diesem Fall wurde die Eingabe verworfen).
+
+Die Eingabe zu einem endlichen Automat ist ein \textbf{Wort} über seinem \textbf{Eingabealphabet}. Ein \textbf{Alphabet} ist eine endliche nicht-leere Menge von \textbf{Symbolen}. Ein \textbf{Wort über einem Alphabet} ist eine (möglicherweise leere) Folge von Symbolen aus dem Alphabet. Eine \textbf{Sprache über einem Alphabet} ist eine (möglicherweise leere) Menge von Wörter über diesem Alphabet.
 
 \end{document}
