@@ -67,6 +67,7 @@
 %Xsim
 %--------------------------------------
 \usepackage{xsim}
+
 \DeclareExerciseType{example}{
 exercise-env      = example,
 solution-env      = examplesolution,
@@ -85,6 +86,13 @@ English  = example ,
 French   = example ,
 German   = Beispiel
 }
+\DeclareExerciseTranslations{examples}{
+Fallback = examples ,
+English  = examples ,
+French   = examples ,
+German   = Beispielen
+}
+
 \DeclareExerciseType{question}{
 exercise-env      = question,
 solution-env      = questionsolution,
@@ -119,7 +127,13 @@ Fallback = definition ,
 English  = definition ,
 German   = Definition
 }
+\DeclareExerciseTranslations{definitions}{
+Fallback = definitions ,
+English  = definitions ,
+German   = Definitionen
+}
 
+\xsimsetup{blank/filled-style = \underline{\textcolor{red}{#1}}}
 
 %Aufgaben
 %--------------------------------------
@@ -207,6 +221,12 @@ Zeichne schematisch einen Obstautomaten, welcher Münzen im Wert von 1 CHF oder 
 \includegraphics[width=0.6\linewidth]{Pictures/weiss.png} 
 \end{figure}
 \end{question}
+\begin{questionsolution}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Pictures/Obstautomat.png} 
+\end{figure}
+\end{questionsolution}
 
 Wir haben bereits 3 endliche Automate gesehen. Was haben sie alle gemeinsam? Welche Informationen brauchen wir, um einen bestimmten Automaten genau nachbauen zu können?\\
 
@@ -239,6 +259,16 @@ Welche der folgenden Mengen sind Alphabete? Begründe deine Antwort.
 \end{itemize}
 \end{exercise}
 
+\begin{solution}
+Welche der folgenden Mengen sind Alphabete? Begründe deine Antwort.
+\begin{itemize}[label=$\square$]
+    \item \(\Sigma = \{a, b, C, D, e, f\}\) \hfill \textcolor{red}{ja, es ist eine endliche nichtleere Menge von Symbolen}
+    \item \(\Sigma = \{\}\) \hfill \textcolor{red}{nein, ein Alphabet darf nicht leer sein}
+    \item \(\Sigma = \{+, -, \times, \div\}\) \hfill \textcolor{red}{ja, es ist eine endliche nichtleere Menge von Symbolen}
+    \item \(\Sigma = \{2, 4, 6, 8, 10, 12, 14, \dots\}\), die Menge aller geraden natürlichen Zahlen \hfill \textcolor{red}{nein, ein Alphabet muss endlich sein}
+\end{itemize}
+\end{solution}
+
 \begin{exercise}
 Welches Alphabet hatten wir für die Eingabe vom Getränkeautomaten benutzt? Und welches hast du für den Obstautomaten verwendet?\\
 
@@ -264,6 +294,14 @@ Welche der folgenden Buchstabenfolgen sind Wörter über dem Alphabet \(\Sigma =
     \item \texttt{abab}
 \end{itemize}
 \end{exercise}
+\begin{solution}
+Welche der folgenden Buchstabenfolgen sind Wörter über dem Alphabet \(\Sigma = \{a, b, c\}\)? Begründe deine Antwort.
+\begin{itemize}[label=$\square$]
+    \item \texttt{abbbbcdccca} \hfill \textcolor{red}{nein, 'd' gehört nicht zum Alphabet}
+    \item \(\lambda\) \hfill \textcolor{red}{ja, das leere Wort ist ein Wort}
+    \item \texttt{abab} \hfill \textcolor{red}{ja, das ist eine Folge von Symbolen aus dem Alphabet}
+\end{itemize}
+\end{solution}
 
 \begin{exercise}[solution=true]
 Schreibe zu jeder Symbolfolge jeweils das kleinste Alphabet \(\Sigma\), so dass die Symbolfolge ein Wort über \(\Sigma\) ist.
@@ -344,19 +382,19 @@ Ein \textbf{endlicher Automat} ist ein Quintupel \(M = (Q, \Sigma, \delta, q_0, 
 }
 \end{definition}
 
-\begin{example}
-In diesem Beispiel beschreiben wir mathematisch den Getränkeautomat.
+\begin{example}[solution=true]
+In diesem Beispiel beschreiben wir mathematisch den Getränkeautomaten.
 {\setstretch{1.5} 
 \begin{enumerate}[(i)]
-    \item \(Q =\) \blank[width=0.5\linewidth]{}
-    \item \(\Sigma =\) \blank[width=0.5\linewidth]{}
-    \item \(q_0 =\) \blank[width=0.5\linewidth]{}
-    \item \(F =\) \blank[width=0.5\linewidth]{}
+    \item \(Q =\) \blank[width=0.5\linewidth]{\(\{q_{\text{bereit}}, q_{\text{bezahlt}}, q_{\text{ausgeschenkt}}, q_{\text{rückgabe}}, q_{\text{rückgabe2}}\}\)}
+    \item \(\Sigma =\) \blank[width=0.5\linewidth]{\(\{\includegraphics[width=20px]{Pictures/Muenze.png}, \includegraphics[width=20px]{Pictures/Kaffee.png}, \includegraphics[width=20px]{Pictures/Schoggi.png}, \includegraphics[width=20px]{Pictures/Becher.png}\}\)}
+    \item \(q_0 =\) \blank[width=0.5\linewidth]{\(q_{\text{bereit}}\)}
+    \item \(F =\) \blank[width=0.5\linewidth]{\(\{q_{\text{ausgeschenkt}}\}\)}
     \item \(\delta:Q \times \Sigma \rightarrow Q \) die Übergansfunktion.
     Wir können alle Werte von \(\delta(q,a)\) für alle \(q \in Q\) und für alle \(a \in \Sigma\) in eine Tabelle schreiben.
         \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{Pictures/Getraenkeautomat_table.png} 
+\includegraphics[width=\linewidth]{\IfInsideSolutionTF{Pictures/Getraenkeautomat_table_sol.png}{Pictures/Getraenkeautomat_table.png}} 
 \end{figure}
 \end{enumerate}
 }
@@ -379,5 +417,7 @@ Endliche Automaten haben eine endliche Anzahl \textbf{Zustände}. Sie bearbeiten
 Bevor jegliche Eingabesymbole eingelesen werden, befindet sich ein endlicher Automat in seinem \textbf{Anfangszustand}. Nach der vollständigen Bearbeitung einer Eingabe endet der endliche Automat entweder in einen \textbf{akzeptierenden Zustand} (in diesem Fall wurde die Eingabe akzeptiert) oder in einen nicht-akzeptierenden Zustand (in diesem Fall wurde die Eingabe verworfen).
 
 Die Eingabe zu einem endlichen Automat ist ein \textbf{Wort} über seinem \textbf{Eingabealphabet}. Ein \textbf{Alphabet} ist eine endliche nicht-leere Menge von \textbf{Symbolen}. Ein \textbf{Wort über einem Alphabet} ist eine (möglicherweise leere) Folge von Symbolen aus dem Alphabet. Eine \textbf{Sprache über einem Alphabet} ist eine (möglicherweise leere) Menge von Wörter über diesem Alphabet.
+
+\printsolutions
 
 \end{document}
