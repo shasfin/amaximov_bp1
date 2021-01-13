@@ -1,0 +1,148 @@
+\documentclass{article}
+%encoding
+%--------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%--------------------------------------
+ 
+%German-specific commands
+%--------------------------------------
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+%--------------------------------------
+ 
+%Pictures
+%--------------------------------------
+\usepackage{graphicx}
+\graphicspath{ {./Pictures/} }
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{wrapfig}
+%--------------------------------------
+
+%math
+%--------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%--------------------------------------
+
+%Frames
+%--------------------------------------
+\usepackage{framed}
+
+%Own math commands
+%--------------------------------------
+\newcommand{\abs}[1]{\lvert#1\rvert}
+
+%Colors
+%--------------------------------------
+\usepackage{xcolor}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%--------------------------------------
+%\usepackage{multicol}
+\usepackage{paracol}
+\usepackage[shortlabels]{enumitem}
+
+%Aufgaben
+%--------------------------------------
+\usepackage{amsthm}
+\newtheorem{aufgabe}{Aufgabe}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{beispiel}{Beispiel}[section]
+%--------------------------------------
+
+%Listings
+%--------------------------------------
+\usepackage{ulem}
+\usepackage{listings}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+ 
+\lstset{style=mystyle,moredelim=[is][\sout]{|}{|}}
+%--------------------------------------
+
+
+
+\title{Funktionen in Tiger Jython - Reflexion}
+\author{Alexandra Maximova}
+\date{3. November 2020, 10. November 2020}
+
+\begin{document}
+
+\maketitle
+\section*{Kurzprotokoll}
+
+\subsection*{Stunde vom 3. November 2020}
+Diese Doppellektion wurde vor 8 SuS gehalten, 5 davon Frauen, 3 Männer, die das erste Jahr Kurzzeitgymnasium absolvieren. Dabei wurde wie folgt vorgegangen:
+\begin{enumerate}
+\item Quadrat 'live' vor der Klasse definieren
+\item SuS lösen selbstständig Aufgaben über Funktionen ohne Parameter.  Lehrperson geht herum und hilft bei Bedarf. Zur Unterstützung haben die SuS ein Skript mit einem Beispiel und mit den 4 Aufgaben.
+\item Pause. Bis zu diesem Zeitpunkt haben die meisten SuS mindestens 2 Aufgaben gelöst.
+\item Funktion mit Parameter 'live' definieren, gleich eine Variable als Parameter verwenden (wie von einer S. vorgeschlagen). Im Nachhinein erwies es sich als nicht die beste Strategie.
+\item SuS lösen selbstständig Aufgaben über Funktionen mit Parameter und, bei manchen Aufgaben, Variablen als Parameter. Lehrperson geht herum und hilft. Zur Unterstützung haben die SuS auch ein Beispiel im Skript.
+\item Extrem kurze Zusammenfassung.
+\end{enumerate}
+
+\subsection*{Stunde vom 10. November 2020}
+Diese Doppellektion wurde vor 8 SuS gehalten, 6 davon Frauen, 2 Männer, die das erste Jahr Kurzzeitgymnasium absolvieren. Dabei wurde wie folgt vorgegangen:
+\begin{enumerate}
+\item Quadrat 'live' vor der Klasse definieren und gleich zeigen, wie man die neu definierte Funktion aufruft und in einer Zeichnung einsetzt.
+\item SuS lösen selbstständig Aufgaben über Funktionen ohne Parameter.  Lehrperson geht herum und hilft bei Bedarf. Zur Unterstützung haben die SuS ein Skript mit einem Beispiel und mit den 4 Aufgaben.
+\item Pause. Bis zu diesem Zeitpunkt haben die meisten SuS mindestens 2 der 4 Aufgaben gelöst.
+\item Funktion mit Parameter 'live' definieren, dieses Mal viel langsamer.
+
+\begin{minipage}{0.5\linewidth}
+Das Ziel ist, ein "radioaktives Radiationsszeichen" zu zeichnen. Zuerst werden drei Funktionen geschrieben, die drei unterschiedlich grosse Dreiecke zeichnen, und diese Funktionen werden verwendet, um das Bild zu zeichnen. Dann wird der Parameter 'Grösse' eingeführt.
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{pictures/radioactive-radiation-sign.png}
+\end{figure}
+\end{minipage}
+ Anstatt von drei Funktionen gibt es jetzt nur eine, die die Grösse als Parameter erwartet. Um das Bild zu zeichnen, rufen wir die neue Funktion auf und geben die Parameter als Zahlen mit. Schliesslich wird eine Schleife daraus gemacht, und eine Variable, die sich in jeder Iteration verdoppelt, für die Grösse verwendet.
+ 
+\item SuS lösen selbstständig Aufgaben über Funktionen mit Parameter. Lehrperson geht herum und hilft. Zur Unterstützung haben die SuS auch ein Beispiel im Skript.
+\item Extrem kurze Zusammenfassung.
+\end{enumerate}
+
+
+\section*{Erwartung vs Beobachtung}
+\begin{itemize}
+\item Die \textbf{Einführung von Parametern} hat beim ersten Mal nicht so gut funktioniert, wie ich es mir vorgestellt hatte. Da ich Parameter und Variablen gleich im ersten Beispiel vermischt hatte, waren die SuS verwirrt und stellten viele Fragen: Wo wird der Parameter definiert; warum kann man ihn direkt verwenden; wie unterscheidet man eine Variable von einem Parameter. Deswegen habe ich das zweite Mal Parameter viel langsamer eingeführt. Das hat besser funktioniert.
+
+\item Ich versuchte, in meinen Beispielen die Variablen sinnvoll zu benennen. Dennoch, als ich mit der Klasse 'live' programmiert hatte, hatte ich teilweise die von den Sus vorgeschlagenen \textbf{Variablennamen} übernommen. Als Resultat, in jener Halbklasse in fast allen Lösungen hiess die Variable 'a'. Nächstes Mal muss ich solche stylistische Kleinigkeiten ansprechen und selber bessere Variablennamen vorschlagen, zumindest in der Version, die als Beispiel projeziert wird.
+
+\item Es war für die SuS nicht immer einfach, die \textbf{Winkel} zu bestimmen, wenn es keine rechten Winkel waren. Geometrisch anspruchsvollere Aufgaben sind mit Vorsicht zu geniessen.
+
+\item Es fehlten anspruchsvollere \textbf{Zusatzaufgaben} für fortgeschrittene SuS. Es gab in jeder Halbklasse einzelne SuS, die deutlich fortgeschrittener waren, als der Rest der Halbklasse. Sie fanden die Aufgaben zum Teil langweilig und waren sichtbar unterfordert. Ich hätte mehr/schwierigere Aufgaben vorbereiten können.
+
+\item Es gab auch technische Probleme bei der \textbf{Darstellung vom PDF Skript} im One Note, welcher von der Praktikumlehrperson in der Klasse verwendet wurde. Dies hat manche Aufgaben völlig verändert. Dabei hatte ich meinen Skript als PDF zur Verfügung gestellt, genau um solche Probleme zu vermeiden!
+\end{itemize}
+
+
+\end{document}

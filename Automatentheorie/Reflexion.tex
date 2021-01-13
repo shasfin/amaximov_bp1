@@ -1,0 +1,115 @@
+\documentclass{article}
+%encoding
+%--------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%--------------------------------------
+ 
+%German-specific commands
+%--------------------------------------
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+%--------------------------------------
+ 
+%Pictures
+%--------------------------------------
+\usepackage{graphicx}
+\graphicspath{ {./Pictures/} }
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{wrapfig}
+%--------------------------------------
+
+%math
+%--------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%--------------------------------------
+
+%Frames
+%--------------------------------------
+\usepackage{framed}
+
+%Own math commands
+%--------------------------------------
+\newcommand{\abs}[1]{\lvert#1\rvert}
+
+%Colors
+%--------------------------------------
+\usepackage{xcolor}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%--------------------------------------
+%\usepackage{multicol}
+\usepackage{paracol}
+\usepackage[shortlabels]{enumitem}
+
+%Aufgaben
+%--------------------------------------
+\usepackage{amsthm}
+\newtheorem{aufgabe}{Aufgabe}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{beispiel}{Beispiel}[section]
+%--------------------------------------
+
+%Listings
+%--------------------------------------
+\usepackage{ulem}
+\usepackage{listings}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+ 
+\lstset{style=mystyle,moredelim=[is][\sout]{|}{|}}
+%--------------------------------------
+
+
+
+\title{Einführung in die Automatentheorie - Reflexion}
+\author{Alexandra Maximova}
+\date{26. Oktober 2020}
+
+\begin{document}
+
+\maketitle
+\section*{Kurzprotokoll}
+Die Doppelstunde wurde vor 10 SuS aus dem vierten Jahr Kurzzeitgymnasium gehalten, 2 davon Frauen, 8 Männer. Für die Stunde wurde ein Skript mit "Löcher" vorbereitet, welches die SuS erhalten haben und währen der Stunde ausfüllen mussten. Das Skript ist nicht für das Selbststudium geeignet und wurde entwickelt, um währen der Unterrichts eingesetzt zu werden.
+
+Der Unterricht war hauptsächlich frontal, mit einer kleinen Gruppenaufgabe, die die SuS in 3 Gruppen von 3 bis 4 Leute gelöst haben. Geplant war auch eine zweite Gruppenaufgabe am Ende der zweiten Stunde, sie wurde aber aus Zeitmangel weggelassen.
+
+\section*{Erwartung vs Beobachtung}
+\begin{itemize}
+\item Das Konzept vom "Skript mit Löcher" war an sich tauglich. Ich hatte aber zu viel Material vorbereitet und musste während der Stunde spontan Aufgaben überspringen, um einen abgerundeten und mehr oder weniger abgeschlossenen Ablauf hinzukriegen. Vielleicht kann man mit kürzeren Arbeitsblätter, die man nach und nach den SuS gibt, ein bisschen entgegen wirken.
+
+\item Für andere Dinge, die ich doch noch spontan erklären wollte, hatte ich kein Material vorbereitet. Konkret ging es um den Unterschied zweischen einer leeren Sprache und einer Sprache, die nur das leere Wort enthält. Als Analogie habe ich eine leere Menge und eine Menge, die nur die Null enthält, benutzt. Ich glaube, Unstimmigkeiten zwischen Unterricht und Materialien sind unvermeidbar, aber gute Planung hilft, sie auf ein Minimum zu reduzieren.
+
+\item Ich hatte vor, bei der Gruppenaufgabe nur eine Lösung vorführen zu lassen, aber die erste Lösung war in einer unerwarteten Form. Der Automat war nicht wie in meinem Beispiel dargestellt, sondern fast wie ein Baum, wo die Zustände sich zum Teil wiederholt haben. Ich war verwirrt und habe die anderen zwei Gruppen auch nach vorne gerufen, um zu sehen, ob irgendjemand meine Erklärungen verstanden hatte. Solche Überraschungen lassen sich vermeiden, wenn man bei Gruppenarbeiten mehr herumläuft und sich die Lösungen im voraus anschaut und, falls notwendig, in die richtige Richtung schiebt.
+
+\item Ich habe das Vorwissen der Klasse sogar während der Stunde falsch eingeschätzt. Ich habe nicht bemerkt, dass die SuS Funktionen mit zwei Parameter und das Kreuzprodukt gerade zum ersten Mal sehen. Erst nach der Stunde hat die Praktikumlehrperson mich darüber aufmerksam gemacht. Nächstes mal soll ich vor der Stunde das benötigte Vorwissen systematisch auflisten und während der Stunde noch mehr auf die Reaktion der Klasse achten und bereit sein, dass sie etwas "triviales" vielleicht nicht wissen. 
+
+\item Es war für mich schwierig gleichzeitig zu reden, korrekt an der Tafel oder im Skript zu schreiben und aufzupassen, was die Klasse gerade versteht. Es hat mal das eine, mal das andere gelitten. Ich hoffe, Übung hilft.
+\end{itemize}
+
+\end{document}
